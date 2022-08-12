@@ -51,62 +51,63 @@
             <h4>Weddings</h4>
             <div class="slider">
               <div class="arr-left">&lt;</div>
-              <img :src="imgSrc('wedding', idx[0])" alt="">
-              <div @class="next(idx[0]++)" class="arr-right">&gt;</div>
-            </div>
-          </div>
-
-          <div class="couples">
-            <h4>Couples</h4>
-            <div class="slider">
-              <div class="arr-left">&lt;</div>
               <img src="./assets/couples1.jpeg" alt="">
-              <div class="arr-right">&gt;</div>
+              <div @class=" next(idx[0]++)" class="arr-right">&gt;
             </div>
           </div>
-
-          <div class="celebration">
-            <h4>Celebrations</h4>
-            <div class="slider">
-              <div class="arr-left">&lt;</div>
-              <img src="./assets/wedding1.jpeg" alt="">
-              <div class="arr-right">&gt;</div>
-            </div>
-          </div>
-
         </div>
-      </transition>
+
+        <div class="couples">
+          <h4>Couples</h4>
+          <div class="slider">
+            <div class="arr-left">&lt;</div>
+            <img src="./assets/couples1.jpeg" alt="">
+            <div class="arr-right">&gt;</div>
+          </div>
+        </div>
+
+        <div class="celebration">
+          <h4>Celebrations</h4>
+          <div class="slider">
+            <div class="arr-left">&lt;</div>
+            <img src="./assets/wedding1.jpeg" alt="">
+            <div class="arr-right">&gt;</div>
+          </div>
+        </div>
+
     </div>
+    </transition>
+  </div>
 
-    <div class="container-item">
+  <div class="container-item">
 
-      <div @click="clickMenu(3)" class="container-title">
-        <h2>Contact</h2>
+    <div @click="clickMenu(3)" class="container-title">
+      <h2>Contact</h2>
+    </div>
+    <transition name="next">
+
+      <div id="slide3" class="container-body" v-if="show === 3">
+        <form action=" " class="form">
+          <div class="column-one">
+            <input type="text" placeholder="Full Name" />
+            <input type="text" placeholder="Email" />
+            <input type="number" name="" id="" placeholder="Phone">
+          </div>
+          <div class="column-two">
+            <input type="text" placeholder="Type of Event" />
+            <input type="date" name="" id="" placeholder="Date of Event">
+            <input type="text" placeholder="Location of Event" />
+          </div>
+          <div class="message">
+            <label for="message">Tell me more!</label>
+            <textarea name="message" id="message" cols="30" rows="10"></textarea>
+          </div>
+          <button class="btn-submit">Submit</button>
+        </form>
       </div>
-      <transition name="next">
+    </transition>
 
-        <div id="slide3" class="container-body" v-if="show === 3">
-          <form action=" " class="form">
-            <div class="column-one">
-              <input type="text" placeholder="Full Name" />
-              <input type="text" placeholder="Email" />
-              <input type="number" name="" id="" placeholder="Phone">
-            </div>
-            <div class="column-two">
-              <input type="text" placeholder="Type of Event" />
-              <input type="date" name="" id="" placeholder="Date of Event">
-              <input type="text" placeholder="Location of Event" />
-            </div>
-            <div class="message">
-              <label for="message">Tell me more!</label>
-              <textarea name="message" id="message" cols="30" rows="10"></textarea>
-            </div>
-            <button class="btn-submit">Submit</button>
-          </form>
-        </div>
-      </transition>
-
-    </div>
+  </div>
 
   </div>
 </template>
@@ -123,7 +124,9 @@ export default {
       show: 2,
       back: false,
       animation: '',
-      idx: [ 1, 1, 1 ]
+      photos: [
+        ['wedding1.jpeg', 'wedding1.jpeg', 'wedding1.jpeg', 'wedding1.jpeg']
+      ]
       
       
     }
@@ -143,9 +146,7 @@ export default {
         this.show = idx;
       }
     },
-    imgSrc(type, idx) {
-      return require(`./assets/${type}${idx}.jpeg`)
-    },
+   
     
   },
   components: {
@@ -162,7 +163,7 @@ export default {
 }
 .next-enter-to {
   transform: translate(-100%, 0);
-  opacity: 1;
+  opacity: 0.8;
 }
 
 .next-leave-active,
@@ -187,7 +188,7 @@ export default {
 
 .prev-enter-to {
   transform: translate(0, 0);
-  opacity: 1;
+  opacity: 0.8;
 }
 
 .prev-leave-active,
@@ -197,7 +198,7 @@ export default {
 
 .prev-leave-from {
   transform: translate(-100%, 0);
-  opacity: 1;
+  opacity: 0.8;
 }
 
 .prev-leave-to {
